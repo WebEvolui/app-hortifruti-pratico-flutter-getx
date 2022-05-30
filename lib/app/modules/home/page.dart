@@ -18,7 +18,10 @@ class HomePage extends GetView<HomeController> {
                 trailing: Text(store.isOnline ? 'Aberto' : 'Fechado'),
               )
           ],
-        )
+        ),
+        onEmpty: const Center(
+          child: Text('Não tem nenhum estabelecimento disponível para a sua cidade.')
+        ),
       )
     );
   }
