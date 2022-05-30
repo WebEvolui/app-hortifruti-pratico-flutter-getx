@@ -8,15 +8,18 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Hortifruti Prático')),
-      body: Obx(() => ListView(
-        children: [
-          ListTile(
-            title: Text('Horti Verde'),
-            leading: FlutterLogo(),
-            trailing: Text('Aberto'),
-          )
-        ],
-      ))
+      body: controller.obx(
+        (state) => ListView(
+          children: [
+            for (var store in state!)
+              ListTile(
+                title: Text(store.name),
+                leading: FlutterLogo(),
+                trailing: Text(store.isOnline ? 'Aberto' : 'Fechado'),
+              )
+          ],
+        )
+      )
     );
   }
 }
