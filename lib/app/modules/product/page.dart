@@ -1,4 +1,5 @@
 import 'package:app_hortifruti_pratico/app/modules/product/controller.dart';
+import 'package:app_hortifruti_pratico/app/modules/product/widgets/quantity_and_weight_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -35,7 +36,7 @@ class ProductPage extends GetView<ProductController> {
                 style: Get.textTheme.titleMedium,
               ),
             Text(
-              NumberFormat.simpleCurrency().format(product.price) + (product.isKG ? '/kg' : ''),
+              NumberFormat.simpleCurrency().format(product.price) + (product.isKg ? '/kg' : ''),
               style: Get.textTheme.titleLarge,
             ),
             TextField(
@@ -45,6 +46,7 @@ class ProductPage extends GetView<ProductController> {
               ),
               maxLength: 50,
             ),
+            QuantityAndWeightWidget(isKg: product.isKg,),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: ElevatedButton(
