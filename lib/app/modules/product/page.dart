@@ -8,10 +8,38 @@ class ProductPage extends GetView<ProductController> {
 
   @override
   Widget build(BuildContext context) {
+    var product = controller.product.value!;
+
     return Scaffold(
-      appBar: AppBar(title: Text(controller.product.value!.name)),
-      body: SafeArea(
-        child: Text('ProductController')
+      appBar: AppBar(title: Text(product.name)),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+        child: Column(
+          children: [
+            if (product.image.isNotEmpty)
+              Align(
+                child: Container(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: FadeInImage.memoryNetwork(
+                      placeholder: kTransparentImage,
+                      image: product.image,
+                    ),
+                  ),
+                ),
+              ),
+            if (product.description != null)
+              Text(
+                product.description!,
+                style: Get.textTheme.titleMedium,
+              ),
+            Text(
+              NumberFormat.simpleCurrency().format(product.price) + (product.isKG ? '/kg' : ''),
+              style: Get.textTheme.titleLarge,
+            ),
+          ],
+        ),
       )
     );
   }
