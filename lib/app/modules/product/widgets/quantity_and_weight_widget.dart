@@ -19,6 +19,8 @@ class QuantityAndWeightWidget extends StatelessWidget {
       builder: (controller) => Column(
         children: [
           QuantityWidget(),
+          if (isKg)
+            WeightWidget()
         ],
       ),
     );
@@ -45,7 +47,7 @@ class QuantityWidget extends StatelessWidget {
           ),
         ),
         Container(
-          width: 48.0,
+          width: isKg ? 96.0 : 48.0,
           padding: const EdgeInsets.all(8.0),
           child: Text(
             NumberFormat.decimalPattern().format(quantity) + (isKg ? 'kg' : ''),
@@ -69,6 +71,21 @@ class QuantityWidget extends StatelessWidget {
   }
 }
 
+class WeightWidget extends StatelessWidget {
+  var controller = Get.find<QuantityAndWeightController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Slider(
+      min: 1,
+      max: 2,
+      divisions: 19,
+      value: controller.weight,
+      onChanged: controller.changeWeight
+    );
+  }
+}
+
 class QuantityAndWeightController extends GetxController {
 
   bool isKg;
@@ -76,8 +93,15 @@ class QuantityAndWeightController extends GetxController {
   QuantityAndWeightController({required this.isKg});
 
   num quantity = 1;
+  double get weight => quantity.toDouble();
 
   void changeQuantity(num value) {
+    quantity = value;
+
+    update();
+  }
+
+  void changeWeight(double value) {
     quantity = value;
 
     update();
