@@ -38,6 +38,20 @@ class ProductPage extends GetView<ProductController> {
               NumberFormat.simpleCurrency().format(product.price) + (product.isKG ? '/kg' : ''),
               style: Get.textTheme.titleLarge,
             ),
+            TextField(
+              controller: controller.observationController,
+              decoration: const InputDecoration(
+                labelText: 'Observação',
+              ),
+              maxLength: 50,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: ElevatedButton(
+                onPressed: () => controller.addToCart(),
+                child: const Text('Adicionar no carrinho')
+              ),
+            )
           ],
         ),
       )
