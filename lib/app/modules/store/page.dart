@@ -1,4 +1,5 @@
 import 'package:app_hortifruti_pratico/app/modules/store/controller.dart';
+import 'package:app_hortifruti_pratico/app/routes/routes.dart';
 import 'package:app_hortifruti_pratico/app/widgets/store_status.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -93,7 +94,13 @@ class StorePage extends GetView<StoreController> {
                                   ),
                                 )
                               : null,
-                          onTap: () {},
+                          onTap: () => Get.toNamed(
+                            Routes.product,
+                            arguments: {
+                              'product': product,
+                              'store': state,
+                            }
+                          ),
                         )
                     ],
                   );
