@@ -83,13 +83,20 @@ class WeightWidget extends StatelessWidget {
           style: Get.textTheme.overline,
         ),
         Expanded(
-          child: Slider(
-            min: controller.min,
-            max: controller.max,
-            divisions: 19,
-            label: controller.label,
-            value: controller.weight,
-            onChanged: controller.changeWeight
+          child: GestureDetector(
+            onTapDown: (details) => controller.enableSlider(),
+            child: Slider(
+              min: controller.min,
+              max: controller.max,
+              divisions: 19,
+              label: controller.label,
+              value: controller.weight,
+              onChanged: (value) {
+                if (controller.sliderEnabled.isTrue) {
+                  controller.changeWeight(value);
+                }
+              }
+            ),
           ),
         ),
         Text(
@@ -111,6 +118,7 @@ class QuantityAndWeightController extends GetxController {
   double get weight => quantity.toDouble();
   late double min;
   late double max;
+  final sliderEnabled = false.obs;
 
   String get label {
     String unit = 'kg';
@@ -157,4 +165,6 @@ class QuantityAndWeightController extends GetxController {
       max = 1;
     }
   }
+
+  void enableSlider() => sliderEnabled.value = true;
 }
