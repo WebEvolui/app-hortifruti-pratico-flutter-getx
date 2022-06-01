@@ -56,7 +56,7 @@ class ProductPage extends GetView<ProductController> {
               child: Column(
                 children: [
                   Text(
-                    'Altere a quantidade',
+                    'Altere ${product.isKg ? 'o peso' : 'a quantidade'}',
                     style: const TextStyle(
                       color: Colors.black54,
                       fontWeight: FontWeight.w500,

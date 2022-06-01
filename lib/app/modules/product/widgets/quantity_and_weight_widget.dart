@@ -76,12 +76,27 @@ class WeightWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Slider(
-      min: 1,
-      max: 2,
-      divisions: 19,
-      value: controller.weight,
-      onChanged: controller.changeWeight
+    return Row(
+      children: [
+        Text(
+          '${NumberFormat.decimalPattern().format(controller.min)}kg',
+          style: Get.textTheme.overline,
+        ),
+        Expanded(
+          child: Slider(
+            min: controller.min,
+            max: controller.max,
+            divisions: 19,
+            label: controller.label,
+            value: controller.weight,
+            onChanged: controller.changeWeight
+          ),
+        ),
+        Text(
+          '${NumberFormat.decimalPattern().format(controller.max)}kg',
+          style: Get.textTheme.overline,
+        ),
+      ],
     );
   }
 }
@@ -94,10 +109,36 @@ class QuantityAndWeightController extends GetxController {
 
   num quantity = 1;
   double get weight => quantity.toDouble();
+  late double min;
+  late double max;
+
+  String get label {
+    String unit = 'kg';
+    String pattern = '0.00';
+    var number = weight;
+
+    if (number < 1) {
+      number *= 1000;
+      unit = 'g';
+      pattern = '';
+    } else if (number % number.toInt() == 0) {
+      pattern = '';
+    }
+
+    return NumberFormat(pattern).format(number) + unit;
+  }
+
+  @override
+  void onInit() {
+    _updateMinAndMax();
+    
+    super.onInit();
+  }
 
   void changeQuantity(num value) {
     quantity = value;
 
+    _updateMinAndMax();
     update();
   }
 
@@ -105,5 +146,15 @@ class QuantityAndWeightController extends GetxController {
     quantity = value;
 
     update();
+  }
+
+  _updateMinAndMax() {
+    min = weight - 1 + 0.05;
+    max = weight;
+
+    if (min < 0) {
+      min = 0.05;
+      max = 1;
+    }
   }
 }
