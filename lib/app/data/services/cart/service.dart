@@ -13,6 +13,10 @@ class CartService extends GetxService {
     products.add(cartProduct);
   }
 
+  void removeProductFromCart(CartProductModel cartProduct) {
+    products.remove(cartProduct);
+  }
+
   void newCart(StoreModel newStore) {
     store.value = newStore;
     products.clear();

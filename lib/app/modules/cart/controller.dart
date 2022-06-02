@@ -7,4 +7,7 @@ class CartController extends GetxController {
   final _cartService = Get.find<CartService>();
   List<CartProductModel> get products => _cartService.products;
 
+  void removeProduct(CartProductModel cartProduct) {
+    _cartService.removeProductFromCart(cartProduct);
+  }
 }
