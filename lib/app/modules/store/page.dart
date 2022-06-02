@@ -11,6 +11,11 @@ class StorePage extends GetView<StoreController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.shopping_cart),
+        onPressed: () => Get.toNamed(Routes.cart),
+        tooltip: 'Ver carrinho',
+      ),
       body: controller.obx(
         (state) => CustomScrollView(
           slivers: [
