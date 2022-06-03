@@ -17,6 +17,14 @@ class CartService extends GetxService {
     products.remove(cartProduct);
   }
 
+  bool isANewStore(StoreModel newStore) {
+    return store.value!.id != newStore.id;
+  }
+
+  void clearCart() {
+    products.clear();
+  }
+
   void newCart(StoreModel newStore) {
     store.value = newStore;
     products.clear();
