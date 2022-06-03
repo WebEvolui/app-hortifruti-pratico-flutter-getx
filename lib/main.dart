@@ -3,15 +3,19 @@ import 'package:app_hortifruti_pratico/app/data/provider/api.dart';
 import 'package:app_hortifruti_pratico/app/data/services/auth/repository.dart';
 import 'package:app_hortifruti_pratico/app/data/services/auth/service.dart';
 import 'package:app_hortifruti_pratico/app/data/services/cart/service.dart';
+import 'package:app_hortifruti_pratico/app/data/services/storage/service.dart';
 import 'package:app_hortifruti_pratico/app/routes/pages.dart';
 import 'package:app_hortifruti_pratico/app/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 
-void main() {
+void main() async {
 
+  await GetStorage.init();
+  Get.put<StorageService>(StorageService());
   Get.put<Api>(Api());
   Get.put<AuthService>(AuthService(AuthRepository(Get.find<Api>())));
   Get.put<CartService>(CartService());

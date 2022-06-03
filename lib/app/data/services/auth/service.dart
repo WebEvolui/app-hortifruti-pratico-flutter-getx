@@ -8,9 +8,9 @@ class AuthService extends GetxService {
 
   AuthService(this._repository);
 
-  Future login(UserLoginRequestModel userLoginRequest) {
-    var data = _repository.login(userLoginRequest);
+  Future<void> login(UserLoginRequestModel userLoginRequest) async {
+    var userLoginResponse = await _repository.login(userLoginRequest);
 
-    return data;
+    print(userLoginResponse.token);
   }
 }

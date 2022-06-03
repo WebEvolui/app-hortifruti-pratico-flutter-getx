@@ -1,5 +1,6 @@
 
 import 'package:app_hortifruti_pratico/app/data/models/user_login_request.dart';
+import 'package:app_hortifruti_pratico/app/data/models/user_login_response.dart';
 import 'package:app_hortifruti_pratico/app/data/provider/api.dart';
 
 class AuthRepository {
@@ -8,5 +9,5 @@ class AuthRepository {
 
   AuthRepository(this._api);
 
-  Future login(UserLoginRequestModel userLoginRequest) => _api.login(userLoginRequest);
+  Future<UserLoginResponseModel> login(UserLoginRequestModel userLoginRequest) => _api.login(userLoginRequest);
 }
