@@ -1,3 +1,4 @@
+import 'package:app_hortifruti_pratico/app/data/models/shipping_by_city.dart';
 import 'package:app_hortifruti_pratico/app/data/services/cart/service.dart';
 import 'package:app_hortifruti_pratico/app/modules/checkout/repository.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,18 @@ class CheckoutController extends GetxController {
   CheckoutController(this._repository);
 
   num get totalCart => _cartService.total;
-  num get deliveryCost => 0;
+  num get deliveryCost {
+    if (getShippingByCity != null) {
+      return getShippingByCity!.cost;
+    }
+    
+    return 0;
+  }
+  ShippingByCityModel? get getShippingByCity {
+    var cityId = 1;
+    return _cartService.store.value!.shippingByCity.firstWhereOrNull(
+      (shippingByCity) => shippingByCity.id == cityId
+    );
+  }
   num get totalOrder => totalCart + deliveryCost;
 }
