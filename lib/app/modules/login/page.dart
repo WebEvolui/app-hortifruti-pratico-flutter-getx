@@ -30,6 +30,7 @@ class LoginPage extends GetView<LoginController> {
               decoration: const InputDecoration(
                 labelText: 'Senha',
               ),
+              obscureText: true,
               validator: (String? value) {
                 if (value != null && value.isEmpty) {
                   return 'Informe a sua senha';
