@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 import 'package:app_hortifruti_pratico/app/data/models/store.dart';
+import 'package:app_hortifruti_pratico/app/data/models/user.dart';
 import 'package:app_hortifruti_pratico/app/data/models/user_login_request.dart';
 import 'package:app_hortifruti_pratico/app/data/models/user_login_response.dart';
 import 'package:app_hortifruti_pratico/app/data/services/storage/service.dart';
@@ -42,6 +43,12 @@ class Api extends GetConnect {
     var response = _errorHandler(await post('login', jsonEncode(data)));
     
     return UserLoginResponseModel.fromJson(response.body);
+  }
+
+  Future<UserModel> getUser() async {
+    var response = _errorHandler(await get('auth/me'));
+
+    return UserModel.fromJson(response.body);
   }
 
   Future<List<StoreModel>> getStores() async {
