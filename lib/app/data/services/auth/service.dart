@@ -8,8 +8,16 @@ class AuthService extends GetxService {
   final _storageService = Get.find<StorageService>();
   AuthRepository _repository;
   final user = Rxn<UserModel>();
+  bool get isLogged => user.value != null;
 
   AuthService(this._repository);
+
+  @override
+  void onInit() async {
+    await _getUser();
+
+    super.onInit();
+  }
 
   Future<void> login(UserLoginRequestModel userLoginRequest) async {
     var userLoginResponse = await _repository.login(userLoginRequest);
