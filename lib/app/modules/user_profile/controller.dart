@@ -1,5 +1,6 @@
 import 'package:app_hortifruti_pratico/app/data/models/city.dart';
 import 'package:app_hortifruti_pratico/app/data/models/user.dart';
+import 'package:app_hortifruti_pratico/app/data/models/user_profile_request.dart';
 // import 'package:app_hortifruti_pratico/app/data/models/user_profile_request.dart';
 import 'package:app_hortifruti_pratico/app/data/services/auth/service.dart';
 import 'package:app_hortifruti_pratico/app/modules/user_profile/repository.dart';
@@ -45,23 +46,21 @@ class UserProfileController extends GetxController with StateMixin<UserModel> {
       return;
     }
 
-    // var userAddressRequest = UserProfileRequestModel(
-    //   street: streetController.text,
-    //   number: numberController.text,
-    //   neighborhood: neighborhoodController.text,
-    //   referencePoint: referencePointController.text,
-    //   cityId: cityId.value!,
-    //   complement: complementController.text,
-    // );
+    var userProfileRequest = UserProfileRequestModel(
+      name: nameController.text,
+      email: emailController.text,
+      phone: phoneController.text,
+      password: passwordController.text,
+    );
 
-    // _repository.postAddress(userAddressRequest).then((value) {
-    //   ScaffoldMessenger.of(Get.overlayContext!).showSnackBar(
-    //     const SnackBar(content: Text('Um novo endereço foi cadastrado'))
-    //   );
+    _repository.putUser(userProfileRequest).then((value) {
+      ScaffoldMessenger.of(Get.overlayContext!).showSnackBar(
+        const SnackBar(content: Text('Seu perfil foi atualizado'))
+      );
 
-    //   Get.back(result: true);
-    // }, onError: (error) => Get.dialog(
-    //   AlertDialog(title: Text(error.toString()))
-    // ));
+      passwordController.text = '';
+    }, onError: (error) => Get.dialog(
+      AlertDialog(title: Text(error.toString()))
+    ));
   }
 }
