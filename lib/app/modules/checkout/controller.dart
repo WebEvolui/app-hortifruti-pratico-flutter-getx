@@ -25,9 +25,12 @@ class CheckoutController extends GetxController {
     return 0;
   }
   ShippingByCityModel? get getShippingByCity {
-    var cityId = 1;
+    if (addressSelected.value == null) {
+      return null;
+    }
+
     return _cartService.store.value!.shippingByCity.firstWhereOrNull(
-      (shippingByCity) => shippingByCity.id == cityId
+      (shippingByCity) => shippingByCity.id == addressSelected.value!.city!.id
     );
   }
   num get totalOrder => totalCart + deliveryCost;
@@ -36,6 +39,7 @@ class CheckoutController extends GetxController {
   bool get isLogged => _authService.isLogged;
   final addresses = RxList<AddressModel>.empty();
   final addressSelected = Rxn<AddressModel>();
+  bool get deliveryToMyAddress => getShippingByCity != null;
 
   @override
   void onInit() {

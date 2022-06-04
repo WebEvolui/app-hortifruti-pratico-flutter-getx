@@ -21,7 +21,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                   style: Get.textTheme.titleLarge,
                 ),
               ),
-              if (controller.isLogged)
+              if (controller.isLogged) ...[
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Row(
@@ -40,7 +40,19 @@ class CheckoutPage extends GetView<CheckoutController> {
                       )
                     ],
                   ),
-                )
+                ),
+                if (!controller.deliveryToMyAddress)
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Text(
+                        'O endereço selecionado não é atendido',
+                        textAlign: TextAlign.center,
+                        style: Get.textTheme.bodyText1!.copyWith(color: Colors.red),
+                      ),
+                    ),
+                  )
+              ]
               else Center(
                 child: OutlinedButton(
                   onPressed: controller.goToLogin,
