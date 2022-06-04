@@ -5,6 +5,7 @@ import 'package:app_hortifruti_pratico/app/data/models/address.dart';
 import 'package:app_hortifruti_pratico/app/data/models/city.dart';
 import 'package:app_hortifruti_pratico/app/data/models/store.dart';
 import 'package:app_hortifruti_pratico/app/data/models/user.dart';
+import 'package:app_hortifruti_pratico/app/data/models/user_address_request.dart';
 import 'package:app_hortifruti_pratico/app/data/models/user_login_request.dart';
 import 'package:app_hortifruti_pratico/app/data/models/user_login_response.dart';
 import 'package:app_hortifruti_pratico/app/data/services/storage/service.dart';
@@ -73,6 +74,10 @@ class Api extends GetConnect {
     }
 
     return data;
+  }
+
+  Future<void> postAddress(UserAddressRequestModel data) async {
+    _errorHandler(await post('enderecos', jsonEncode(data)));
   }
 
   Future<List<StoreModel>> getStores() async {
