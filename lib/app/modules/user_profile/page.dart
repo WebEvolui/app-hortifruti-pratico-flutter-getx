@@ -1,4 +1,5 @@
 import 'package:app_hortifruti_pratico/app/modules/user_profile/controller.dart';
+import 'package:app_hortifruti_pratico/app/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -97,6 +98,12 @@ class UserProfilePage extends GetView<UserProfileController> {
               ],
             ),
           ),
+        ),
+        onError: (error) => Center(
+          child: ElevatedButton(
+            onPressed: () => Get.toNamed(Routes.login),
+            child: const Text('Entrar com a minha conta'),
+          )
         )
       ),
     );

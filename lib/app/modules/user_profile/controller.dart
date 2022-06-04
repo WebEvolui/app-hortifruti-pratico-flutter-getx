@@ -1,11 +1,12 @@
 import 'package:app_hortifruti_pratico/app/data/models/city.dart';
+import 'package:app_hortifruti_pratico/app/data/models/user.dart';
 // import 'package:app_hortifruti_pratico/app/data/models/user_profile_request.dart';
 import 'package:app_hortifruti_pratico/app/data/services/auth/service.dart';
 import 'package:app_hortifruti_pratico/app/modules/user_profile/repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class UserProfileController extends GetxController with StateMixin<List<CityModel>> {
+class UserProfileController extends GetxController with StateMixin<UserModel> {
 
   final UserProfileRepository _repository;
 
@@ -20,7 +21,11 @@ class UserProfileController extends GetxController with StateMixin<List<CityMode
 
   @override
   void onInit() {
-    _repository.getCities().then((data) {
+    _repository.getUser().then((data) {
+      nameController.text = data.name;
+      emailController.text = data.email;
+      phoneController.text = data.phone;
+
       change(data, status: RxStatus.success());
     }, onError: (error) {
       change(null, status: RxStatus.error(error));
@@ -30,7 +35,7 @@ class UserProfileController extends GetxController with StateMixin<List<CityMode
   }
 
   void logout() {
-    
+
   }
 
   void submit() {
