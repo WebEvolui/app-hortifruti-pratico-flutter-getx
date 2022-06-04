@@ -13,12 +13,10 @@ class UserProfileController extends GetxController with StateMixin<List<CityMode
 
   final formKey = GlobalKey<FormState>();
   final _authService = Get.find<AuthService>();
-  var streetController = TextEditingController(text: 'Rua A');
-  var numberController = TextEditingController(text: '10');
-  var neighborhoodController = TextEditingController(text: 'Centro');
-  var referencePointController = TextEditingController(text: 'Perto da praça');
-  var complementController = TextEditingController(text: '');
-  final cityId = RxnInt();
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+  var phoneController = TextEditingController();
+  var passwordController = TextEditingController();
 
   @override
   void onInit() {
@@ -29,6 +27,10 @@ class UserProfileController extends GetxController with StateMixin<List<CityMode
     });
 
     super.onInit();
+  }
+
+  void logout() {
+    
   }
 
   void submit() {
@@ -56,9 +58,5 @@ class UserProfileController extends GetxController with StateMixin<List<CityMode
     // }, onError: (error) => Get.dialog(
     //   AlertDialog(title: Text(error.toString()))
     // ));
-  }
-
-  void changeCity(int? cityIdSelected) {
-    cityId.value = cityIdSelected;
   }
 }

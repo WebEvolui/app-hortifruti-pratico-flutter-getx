@@ -16,90 +16,79 @@ class UserProfilePage extends GetView<UserProfileController> {
             child: Column(
               children: [
                 TextFormField(
-                  controller: controller.streetController,
+                  controller: controller.nameController,
                   decoration: const InputDecoration(
-                    labelText: 'Rua',
+                    labelText: 'Nome',
                   ),
                   validator: (String? value) {
                     if (value != null && value.isEmpty) {
-                      return 'Preencha o nome da rua';
+                      return 'Preencha o seu nome';
                     }
           
                     return null;
                   },
                 ),
                 TextFormField(
-                  controller: controller.numberController,
+                  controller: controller.emailController,
                   decoration: const InputDecoration(
-                    labelText: 'Número',
+                    labelText: 'Email',
                   ),
                   validator: (String? value) {
                     if (value != null && value.isEmpty) {
-                      return 'Preencha o número da casa/apartamento';
+                      return 'Preencha o seu email';
                     }
           
                     return null;
                   },
                 ),
                 TextFormField(
-                  controller: controller.neighborhoodController,
+                  controller: controller.phoneController,
                   decoration: const InputDecoration(
-                    labelText: 'Bairro',
+                    labelText: 'Telefone',
                   ),
                   validator: (String? value) {
                     if (value != null && value.isEmpty) {
-                      return 'Preencha o nome do bairro';
+                      return 'Preencha o seu telefone para contato';
                     }
           
                     return null;
                   },
                 ),
                 TextFormField(
-                  controller: controller.referencePointController,
+                  controller: controller.passwordController,
                   decoration: const InputDecoration(
-                    labelText: 'Ponto de referência',
+                    labelText: 'Senha',
                   ),
+                  obscureText: true,
                   validator: (String? value) {
                     if (value != null && value.isEmpty) {
-                      return 'Informe um ponto de referência para o entregador';
+                      return 'Informe sua senha';
                     }
           
                     return null;
                   },
                 ),
-                TextFormField(
-                  controller: controller.complementController,
-                  decoration: const InputDecoration(
-                    labelText: 'Complemento',
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: controller.submit,
+                          child: const Text('Atualizar')
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                DropdownButtonFormField(
-                  value: controller.cityId.value,
-                  items: state!.map((city) => DropdownMenuItem<int>(
-                    value: city.id,
-                    child: Text(city.name)
-                  )).toList(),
-                  onChanged: controller.changeCity,
-                  decoration: const InputDecoration(
-                    labelText: 'Cidade',
-                  ),
-                  validator: (int? value) {
-                    if (value == null) {
-                      return 'Selecione uma cidade';
-                    }
-          
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 16.0,),
                 Row(
                   children: [
                     Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        child: ElevatedButton(
-                          onPressed: controller.submit,
-                          child: const Text('Adicionar')
+                      child: OutlinedButton(
+                        onPressed: controller.logout,
+                        child: const Text('Sair da minha conta'),
+                        style: OutlinedButton.styleFrom(
+                          primary: Colors.red,
                         ),
                       ),
                     ),
