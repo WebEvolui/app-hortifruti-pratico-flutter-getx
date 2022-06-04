@@ -41,6 +41,7 @@ class CheckoutController extends GetxController {
   final addresses = RxList<AddressModel>.empty();
   final addressSelected = Rxn<AddressModel>();
   bool get deliveryToMyAddress => getShippingByCity != null;
+  bool get canSendOrder => isLogged && deliveryToMyAddress;
 
   @override
   void onInit() {
@@ -97,5 +98,15 @@ class CheckoutController extends GetxController {
         ],
       )
     );
+  }
+
+  void sendOrder() {
+    if (paymentMethod.value == null) {
+      ScaffoldMessenger.of(Get.overlayContext!).showSnackBar(
+        SnackBar(content: Text('Escolha a forma de pagamento do seu pedido.'))
+      );
+
+      return;
+    }
   }
 }

@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:app_hortifruti_pratico/app/data/models/address.dart';
 import 'package:app_hortifruti_pratico/app/data/models/city.dart';
+import 'package:app_hortifruti_pratico/app/data/models/order_request.dart';
 import 'package:app_hortifruti_pratico/app/data/models/store.dart';
 import 'package:app_hortifruti_pratico/app/data/models/user.dart';
 import 'package:app_hortifruti_pratico/app/data/models/user_address_request.dart';
@@ -95,6 +96,10 @@ class Api extends GetConnect {
     var response = _errorHandler(await get('estabelecimentos/$id'));
 
     return StoreModel.fromJson(response.body);
+  }
+
+  Future postOrder(OrderRequestModel data) async {
+    _errorHandler(await post('pedidos', jsonEncode(data)));
   }
 
   Response _errorHandler(Response response) {

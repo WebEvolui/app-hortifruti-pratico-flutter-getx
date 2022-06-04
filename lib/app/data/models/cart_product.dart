@@ -13,4 +13,11 @@ class CartProductModel {
   });
 
   num get total => product.price * quantity;
+
+  Map<String, dynamic> toJson() => {
+    'produto_id': product.id,
+    'quantidade': quantity,
+    if (observation != null && observation!.trim().isNotEmpty)
+      'observacao': observation,
+  };
 }
