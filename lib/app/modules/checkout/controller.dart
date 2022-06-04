@@ -55,17 +55,21 @@ class CheckoutController extends GetxController {
     paymentMethod.value = newPaymentMethod;
   }
 
-  void goToNewAddress() {
-    Get.toNamed(Routes.userAddress);
+  void goToNewAddress() async {
+    var result = await Get.toNamed(Routes.userAddress);
+
+    if (result is bool && result) {
+      fetchAddresses();
+    }
   }
 
   void goToLogin() {
     Get.toNamed(Routes.login);
   }
 
-  fetchAddresses() {
-    _repository.getUserAddresses().then((value) {
-      addresses.addAll(value);
+  void fetchAddresses() {
+    _repository.getUserAddresses().then((data) {
+      addresses.assignAll(data);
 
       if (addresses.isNotEmpty) {
         addressSelected.value = addresses.first;

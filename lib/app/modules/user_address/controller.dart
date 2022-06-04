@@ -51,6 +51,8 @@ class UserAddressController extends GetxController with StateMixin<List<CityMode
       ScaffoldMessenger.of(Get.overlayContext!).showSnackBar(
         const SnackBar(content: Text('Um novo endereço foi cadastrado'))
       );
+
+      Get.back(result: true);
     }, onError: (error) => Get.dialog(
       AlertDialog(title: Text(error.toString()))
     ));
