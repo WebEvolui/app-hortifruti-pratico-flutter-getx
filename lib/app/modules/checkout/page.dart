@@ -22,19 +22,25 @@ class CheckoutPage extends GetView<CheckoutController> {
                 ),
               ),
               if (controller.isLogged)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    if (controller.addresses.isEmpty)
-                      OutlinedButton(
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (controller.addresses.isNotEmpty) ...[
+                        Expanded(child: _buildAddress()),
+                        TextButton(
+                          onPressed: controller.showAddressList,
+                          child: Text('Alterar')
+                        )
+                      ]
+                      else OutlinedButton(
                         onPressed: controller.goToNewAddress,
                         child: const Text('Cadastrar um endereço')
                       )
-                  ],
-                ),
-              )
+                    ],
+                  ),
+                )
               else Center(
                 child: OutlinedButton(
                   onPressed: controller.goToLogin,
@@ -117,5 +123,10 @@ class CheckoutPage extends GetView<CheckoutController> {
         ),
       )
     );
+  }
+
+  Widget _buildAddress() {
+    var address = controller.addressSelected.value!;
+    return Text('${address.street}, n° ${address.number}, ${address.neighborhood}');
   }
 }

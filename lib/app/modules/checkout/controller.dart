@@ -5,6 +5,7 @@ import 'package:app_hortifruti_pratico/app/data/services/auth/service.dart';
 import 'package:app_hortifruti_pratico/app/data/services/cart/service.dart';
 import 'package:app_hortifruti_pratico/app/modules/checkout/repository.dart';
 import 'package:app_hortifruti_pratico/app/routes/routes.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CheckoutController extends GetxController {
@@ -34,6 +35,7 @@ class CheckoutController extends GetxController {
   final paymentMethod = Rxn<PaymentMethodModel>();
   bool get isLogged => _authService.isLogged;
   final addresses = RxList<AddressModel>.empty();
+  final addressSelected = Rxn<AddressModel>();
 
   @override
   void onInit() {
@@ -55,9 +57,37 @@ class CheckoutController extends GetxController {
   }
 
   fetchAddresses() {
-    _repository.getUserAddresses()
-      .then((value) {
-        addresses.addAll(value);
-      });
+    _repository.getUserAddresses().then((value) {
+      addresses.addAll(value);
+
+      if (addresses.isNotEmpty) {
+        addressSelected.value = addresses.first;
+      }
+    });
+  }
+
+  void showAddressList() {
+    Get.dialog(
+      SimpleDialog(
+        title: Text('Selecione um endereço'),
+        children: [
+          for (var address in addresses)
+            SimpleDialogOption(
+              child: Text('${address.street}, n° ${address.number}, ${address.neighborhood}'),
+              onPressed: () {
+                addressSelected.value = address;
+                Get.back();
+              },
+            ),
+          TextButton(
+            onPressed: () {
+              Get.back();
+              goToNewAddress();
+            },
+            child: const Text('Cadastrar um endereço')
+          )
+        ],
+      )
+    );
   }
 }
