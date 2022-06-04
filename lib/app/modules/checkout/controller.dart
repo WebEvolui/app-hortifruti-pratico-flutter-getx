@@ -63,8 +63,12 @@ class CheckoutController extends GetxController {
     }
   }
 
-  void goToLogin() {
-    Get.toNamed(Routes.login);
+  void goToLogin() async {
+    var result = await Get.toNamed(Routes.login);
+
+    if (result is bool && result) {
+      fetchAddresses();
+    }
   }
 
   void fetchAddresses() {

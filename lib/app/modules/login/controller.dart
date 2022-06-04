@@ -24,6 +24,10 @@ class LoginController extends GetxController {
 
     _authService
       .login(userLoginRequestModel)
-      .then((value) => null);
+      .then((value) {
+        Get.back(result: true);
+      }, onError: (error) {
+        Get.dialog(AlertDialog(title: Text(error.toString()),));
+      });
   }
 }
