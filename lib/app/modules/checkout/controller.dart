@@ -46,6 +46,10 @@ class CheckoutController extends GetxController {
     paymentMethod.value = newPaymentMethod;
   }
 
+  void goToNewAddress() {
+    Get.toNamed(Routes.userAddress);
+  }
+
   void goToLogin() {
     Get.toNamed(Routes.login);
   }

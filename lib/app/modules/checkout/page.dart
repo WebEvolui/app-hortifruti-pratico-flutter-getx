@@ -14,13 +14,33 @@ class CheckoutPage extends GetView<CheckoutController> {
           () => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (!controller.isLogged)
-                Center(
-                  child: OutlinedButton(
-                    onPressed: controller.goToLogin,
-                    child: Text('Entre com a sua conta para continuar')
-                  ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                child: Text(
+                  'Endereço',
+                  style: Get.textTheme.titleLarge,
                 ),
+              ),
+              if (controller.isLogged)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (controller.addresses.isEmpty)
+                      OutlinedButton(
+                        onPressed: controller.goToNewAddress,
+                        child: const Text('Cadastrar um endereço')
+                      )
+                  ],
+                ),
+              )
+              else Center(
+                child: OutlinedButton(
+                  onPressed: controller.goToLogin,
+                  child: Text('Entre com a sua conta para continuar')
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                 child: Text(
