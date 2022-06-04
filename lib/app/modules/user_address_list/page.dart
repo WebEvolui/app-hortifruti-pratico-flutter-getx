@@ -12,6 +12,20 @@ class UserAddressListPage extends GetView<UserAddressListController> {
         child: controller.obx(
           (state) => Column(
             children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        onPressed: controller.goToNewAddress,
+                        icon: const Icon(Icons.add_location),
+                        label: const Text('Novo endereço')
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               for (var address in state!)
                 ListTile(
                   title: Text('${address.street}, n° ${address.number}'),
@@ -30,6 +44,7 @@ class UserAddressListPage extends GetView<UserAddressListController> {
                     onSelected: (value) {
                       switch (value) {
                         case 'delete':
+                          controller.deleteAddress(address);
                           break;
                         case 'edit':
                           break;
