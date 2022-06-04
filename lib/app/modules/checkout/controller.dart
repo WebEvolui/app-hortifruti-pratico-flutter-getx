@@ -1,4 +1,5 @@
 import 'package:app_hortifruti_pratico/app/data/models/address.dart';
+import 'package:app_hortifruti_pratico/app/data/models/order_request.dart';
 import 'package:app_hortifruti_pratico/app/data/models/payment_method.dart';
 import 'package:app_hortifruti_pratico/app/data/models/shipping_by_city.dart';
 import 'package:app_hortifruti_pratico/app/data/services/auth/service.dart';
@@ -108,5 +109,31 @@ class CheckoutController extends GetxController {
 
       return;
     }
+
+    var orderRequest = OrderRequestModel(
+      store: _cartService.store.value!,
+      paymentMethod: paymentMethod.value!,
+      cartProducts: _cartService.products,
+      address: addressSelected.value!,
+      observation: _cartService.observation.value
+    );
+
+    _repository.postOrder(orderRequest).then((value) {
+      Get.dialog(
+        AlertDialog(
+          title: Text('Pedido enviado!'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                _cartService.finalizeCart();
+                Get.offAllNamed(Routes.dashboard);
+              },
+              child: Text('Ver Meus Pedidos')
+            )
+          ],
+        ),
+        barrierDismissible: false,
+      );
+    });
   }
 }
