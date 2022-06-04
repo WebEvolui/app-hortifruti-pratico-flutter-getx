@@ -15,7 +15,8 @@ class CheckoutController extends GetxController {
   final _authService = Get.find<AuthService>();
   
   CheckoutController(this._repository);
-
+  
+  final loading = true.obs;
   num get totalCart => _cartService.total;
   num get deliveryCost {
     if (getShippingByCity != null) {
@@ -67,6 +68,9 @@ class CheckoutController extends GetxController {
       if (addresses.isNotEmpty) {
         addressSelected.value = addresses.first;
       }
+      loading(false);
+    }, onError: (error) {
+      loading(false);
     });
   }
 

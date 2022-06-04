@@ -9,9 +9,15 @@ class CheckoutPage extends GetView<CheckoutController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Checkout')),
-      body: SingleChildScrollView(
-        child: Obx(
-          () => Column(
+      body: Obx(() {
+        if (controller.loading.isTrue) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        return SingleChildScrollView(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
@@ -132,8 +138,8 @@ class CheckoutPage extends GetView<CheckoutController> {
               ),
             ],
           ),
-        ),
-      )
+        );
+      })
     );
   }
 
