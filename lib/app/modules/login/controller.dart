@@ -29,7 +29,7 @@ class LoginController extends GetxController {
         if (Get.routing.previous == Routes.checkout) {
           Get.back(result: true);
         } else {
-          Get.offAllNamed(Routes.dashboard);
+          Get.offAllNamed(Routes.dashboard, arguments: 1);
         }
       }, onError: (error) {
         Get.dialog(AlertDialog(title: Text(error.toString()),));
