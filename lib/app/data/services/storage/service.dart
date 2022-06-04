@@ -20,6 +20,10 @@ class StorageService extends GetxService {
   Future<void> saveToken(String token) {
     return box.write(StorageKey.token.toString(), token);
   }
+
+  Future<void> removeToken() {
+    return box.remove(StorageKey.token.toString());
+  }
 }
 
 enum StorageKey {

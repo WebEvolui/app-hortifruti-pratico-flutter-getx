@@ -27,6 +27,11 @@ class AuthService extends GetxService {
     print(userLoginResponse.token);
   }
 
+  Future<void> logout() async {
+    await _storageService.removeToken();
+    user.value = null;
+  }
+
   Future _getUser() {
     return _repository.getUser()
       .then((value) {

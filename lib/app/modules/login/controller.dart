@@ -1,5 +1,6 @@
 import 'package:app_hortifruti_pratico/app/data/models/user_login_request.dart';
 import 'package:app_hortifruti_pratico/app/data/services/auth/service.dart';
+import 'package:app_hortifruti_pratico/app/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +26,11 @@ class LoginController extends GetxController {
     _authService
       .login(userLoginRequestModel)
       .then((value) {
-        Get.back(result: true);
+        if (Get.routing.previous == Routes.checkout) {
+          Get.back(result: true);
+        } else {
+          Get.offAllNamed(Routes.dashboard);
+        }
       }, onError: (error) {
         Get.dialog(AlertDialog(title: Text(error.toString()),));
       });
