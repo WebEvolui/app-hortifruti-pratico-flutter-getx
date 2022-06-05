@@ -62,6 +62,12 @@ class Api extends GetConnect {
     return UserLoginResponseModel.fromJson(response.body);
   }
 
+  Future<UserModel> register(UserProfileRequestModel data) async {
+    var response = _errorHandler(await post('cliente/cadastro', jsonEncode(data)));
+    
+    return UserModel.fromJson(response.body);
+  }
+
   Future<UserModel> getUser() async {
     var response = _errorHandler(await get('auth/me'));
 
