@@ -9,7 +9,16 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Hortifruti Prático')),
+      appBar: AppBar(
+        title: Text('Hortifruti Prático'),
+        actions: [
+          IconButton(
+            onPressed: () => Get.toNamed(Routes.selectCity),
+            icon: const Icon(Icons.location_pin),
+            tooltip: 'Alterar cidade',
+          )
+        ],
+      ),
       body: controller.obx(
         (state) => ListView(
           children: [

@@ -11,6 +11,8 @@ import 'package:app_hortifruti_pratico/app/modules/order/binding.dart';
 import 'package:app_hortifruti_pratico/app/modules/order/page.dart';
 import 'package:app_hortifruti_pratico/app/modules/product/binding.dart';
 import 'package:app_hortifruti_pratico/app/modules/product/page.dart';
+import 'package:app_hortifruti_pratico/app/modules/select_city/binding.dart';
+import 'package:app_hortifruti_pratico/app/modules/select_city/page.dart';
 import 'package:app_hortifruti_pratico/app/modules/store/binding.dart';
 import 'package:app_hortifruti_pratico/app/modules/store/page.dart';
 import 'package:app_hortifruti_pratico/app/modules/user_address/binding.dart';
@@ -67,6 +69,12 @@ abstract class AppPages {
       name: Routes.order,
       page: () => OrderPage(),
       binding: OrderBinding(),
+    ),
+    GetPage(
+      name: Routes.selectCity,
+      page: () => SelectCityPage(),
+      binding: SelectCityBinding(),
+      fullscreenDialog: true
     ),
   ];
 }
