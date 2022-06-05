@@ -32,6 +32,14 @@ class UserAddressListController extends GetxController with StateMixin<List<Addr
     }
   }
 
+  void goToEditAddress(AddressModel address) async {
+    var result = await Get.toNamed(Routes.userAddress, arguments: address);
+
+    if (result is bool && result) {
+      fetchAddresses();
+    }
+  }
+
   void deleteAddress(AddressModel address) {
     _repository.deleteAddress(address.id).then((value) async {
       await fetchAddresses();

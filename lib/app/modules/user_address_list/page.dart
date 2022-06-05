@@ -7,10 +7,10 @@ class UserAddressListPage extends GetView<UserAddressListController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('UserAddressListPage')),
-      body: SingleChildScrollView(
-        child: controller.obx(
-          (state) => Column(
+      appBar: AppBar(title: const Text('Meus endereços')),
+      body: controller.obx(
+        (state) => SingleChildScrollView(
+          child: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
@@ -47,10 +47,12 @@ class UserAddressListPage extends GetView<UserAddressListController> {
                           controller.deleteAddress(address);
                           break;
                         case 'edit':
+                          controller.goToEditAddress(address);
                           break;
                       }
                     },
                   ),
+                  onTap: () => controller.goToEditAddress(address),
                 )
             ],
           ),
