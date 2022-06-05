@@ -1,5 +1,6 @@
 import 'package:app_hortifruti_pratico/app/data/models/city.dart';
 import 'package:app_hortifruti_pratico/app/data/models/user.dart';
+import 'package:app_hortifruti_pratico/app/data/models/user_login_request.dart';
 import 'package:app_hortifruti_pratico/app/data/models/user_profile_request.dart';
 import 'package:app_hortifruti_pratico/app/data/services/auth/service.dart';
 import 'package:app_hortifruti_pratico/app/modules/register/repository.dart';
@@ -34,14 +35,19 @@ class RegisterController extends GetxController {
       password: passwordController.text,
     );
 
-    _repository.register(userProfileRequest).then((value) {
-      // ScaffoldMessenger.of(Get.overlayContext!).showSnackBar(
-      //   const SnackBar(content: Text('Seu perfil foi atualizado'))
-      // );
+    _repository.register(userProfileRequest).then((value) async {
+      await _authService.login(UserLoginRequestModel(
+        email: emailController.text,
+        password: passwordController.text,
+      ));
+      
+      ScaffoldMessenger.of(Get.overlayContext!).showSnackBar(
+        const SnackBar(content: Text('Cadastro feito com sucesso'))
+      );
 
-      // passwordController.text = '';
-    }, onError: (error) => Get.dialog(
-      AlertDialog(title: Text(error.toString()))
-    ));
+      Get.offAllNamed(Routes.dashboard);
+    }, onError: (error) {
+      Get.dialog(AlertDialog(title: Text(error.toString())));
+    });
   }
 }

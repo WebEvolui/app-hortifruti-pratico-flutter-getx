@@ -46,8 +46,8 @@ class UserAddressListController extends GetxController with StateMixin<List<Addr
       ScaffoldMessenger.of(Get.overlayContext!).showSnackBar(
         const SnackBar(content: Text('O endereço foi excluído'))
       );
-    }, onError: (error) => Get.dialog(
-      AlertDialog(title: Text(error.toString()))
-    ));
+    }, onError: (error) {
+      Get.dialog(AlertDialog(title: Text(error.toString())));
+    });
   }
 }
