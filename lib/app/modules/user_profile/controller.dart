@@ -23,17 +23,23 @@ class UserProfileController extends GetxController with StateMixin<UserModel> {
 
   @override
   void onInit() {
+    ever(_authService.user, (_) => fetchUser());
+
+    fetchUser();
+
+    super.onInit();
+  }
+
+  void fetchUser() {
     _repository.getUser().then((data) {
       nameController.text = data.name;
       emailController.text = data.email;
       phoneController.text = data.phone;
-
+    
       change(data, status: RxStatus.success());
     }, onError: (error) {
       change(null, status: RxStatus.error(error));
     });
-
-    super.onInit();
   }
 
   void logout() async {
