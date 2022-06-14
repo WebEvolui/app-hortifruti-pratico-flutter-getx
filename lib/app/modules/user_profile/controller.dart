@@ -8,7 +8,7 @@ import 'package:app_hortifruti_pratico/app/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class UserProfileController extends GetxController with StateMixin<UserModel> {
+class UserProfileController extends GetxController {
 
   final UserProfileRepository _repository;
 
@@ -20,25 +20,26 @@ class UserProfileController extends GetxController with StateMixin<UserModel> {
   var emailController = TextEditingController();
   var phoneController = TextEditingController();
   var passwordController = TextEditingController();
+  final loading = false.obs;
+  bool get isLogged => _authService.isLogged;
 
   @override
   void onInit() {
     ever(_authService.user, (_) => fetchUser());
 
-    fetchUser();
-
     super.onInit();
   }
 
   void fetchUser() {
+    loading(true);
     _repository.getUser().then((data) {
       nameController.text = data.name;
       emailController.text = data.email;
       phoneController.text = data.phone;
     
-      change(data, status: RxStatus.success());
+      loading(false);
     }, onError: (error) {
-      change(null, status: RxStatus.error(error));
+      loading(false);
     });
   }
 

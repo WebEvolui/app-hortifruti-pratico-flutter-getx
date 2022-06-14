@@ -9,8 +9,23 @@ class UserProfilePage extends GetView<UserProfileController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Meu Perfil')),
-      body: controller.obx(
-        (state) => SingleChildScrollView(
+      body: Obx(() {
+        if (controller.loading.isTrue) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+
+        if (!controller.isLogged) {
+          return Center(
+            child: ElevatedButton(
+              onPressed: () => Get.toNamed(Routes.login),
+              child: const Text('Entrar com a minha conta'),
+            )
+          );
+        }
+
+        return SingleChildScrollView(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           child: Column(
             children: [
@@ -113,14 +128,8 @@ class UserProfilePage extends GetView<UserProfileController> {
               ),
             ],
           ),
-        ),
-        onError: (error) => Center(
-          child: ElevatedButton(
-            onPressed: () => Get.toNamed(Routes.login),
-            child: const Text('Entrar com a minha conta'),
-          )
-        )
-      ),
+        );
+      }),
     );
   }
 }
