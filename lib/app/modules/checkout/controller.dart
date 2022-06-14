@@ -72,6 +72,7 @@ class CheckoutController extends GetxController {
   }
 
   void fetchAddresses() {
+    loading(true);
     _repository.getUserAddresses().then((data) {
       addresses.assignAll(data);
 
