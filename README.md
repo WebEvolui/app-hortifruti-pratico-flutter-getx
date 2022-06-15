@@ -4,7 +4,7 @@ Aplicativo Flutter do curso Flutter e GetX + AdonisJS disponível na Udemy
 
 ## Getting Started
 
-Este projeto foi desenvolvido durante o curso Flutter e GetX + AdonisJS que está disponível na Udemy.
+Este projeto foi desenvolvido durante o curso Flutter e GetX + API AdonisJS que está disponível na Udemy.
 
 Quer aprender a desenvolver projetos como esse? Acesse o link do curso abaixo:
 
