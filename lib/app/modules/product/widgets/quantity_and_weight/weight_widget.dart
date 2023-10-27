@@ -6,13 +6,15 @@ import 'package:intl/intl.dart';
 class WeightWidget extends StatelessWidget {
   var controller = Get.find<QuantityAndWeightController>();
 
+  WeightWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Text(
           '${NumberFormat.decimalPattern().format(controller.min)}kg',
-          style: Get.textTheme.overline,
+          style: Get.textTheme.labelSmall,
         ),
         Expanded(
           child: GestureDetector(
@@ -33,7 +35,7 @@ class WeightWidget extends StatelessWidget {
         ),
         Text(
           '${NumberFormat.decimalPattern().format(controller.max)}kg',
-          style: Get.textTheme.overline,
+          style: Get.textTheme.labelSmall,
         ),
       ],
     );

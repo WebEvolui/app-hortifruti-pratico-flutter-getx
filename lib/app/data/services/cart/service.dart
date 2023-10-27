@@ -1,6 +1,5 @@
 import 'package:app_hortifruti_pratico/app/data/models/cart_product.dart';
 import 'package:app_hortifruti_pratico/app/data/models/store.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 import 'package:get/get.dart';
 

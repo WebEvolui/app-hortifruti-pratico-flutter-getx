@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SelectCityPage extends GetView<SelectCityController> {
+  const SelectCityPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Selecione uma cidade')),
+      appBar: AppBar(title: const Text('Selecione uma cidade')),
       body: controller.obx(
         (state) => SingleChildScrollView(
           child: Column(

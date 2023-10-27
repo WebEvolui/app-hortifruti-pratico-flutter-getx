@@ -10,8 +10,7 @@ var radioTheme = RadioThemeData(
 
 var elevatedButtonTheme = ElevatedButtonThemeData(
   style: ElevatedButton.styleFrom(
-    onPrimary: colorScheme.onPrimary,
-    primary: colorScheme.primary
+    foregroundColor: colorScheme.onPrimary, backgroundColor: colorScheme.primary
   )
 );
 

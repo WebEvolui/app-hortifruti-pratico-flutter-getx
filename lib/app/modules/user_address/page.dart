@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserAddressPage extends GetView<UserAddressController> {
+  const UserAddressPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {

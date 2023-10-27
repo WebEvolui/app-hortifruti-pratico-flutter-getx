@@ -6,11 +6,13 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class CartPage extends GetView<CartController> {
+  const CartPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Carrinho')),
+      appBar: AppBar(title: const Text('Carrinho')),
       body: SingleChildScrollView(
         child: Obx(
           () => Column(

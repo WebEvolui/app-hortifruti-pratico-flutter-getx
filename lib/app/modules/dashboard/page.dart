@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DashboardPage extends GetView<DashboardController> {
+  const DashboardPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class DashboardPage extends GetView<DashboardController> {
       body: Obx(
         () => IndexedStack(
           index: controller.currentPageIndex.value,
-          children: [
+          children: const [
             HomePage(),
             UserProfilePage(),
             OrderListPage(),

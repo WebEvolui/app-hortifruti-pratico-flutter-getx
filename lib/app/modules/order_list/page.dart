@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OrderListPage extends GetView<OrderListController> {
+  const OrderListPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {

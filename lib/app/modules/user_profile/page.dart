@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserProfilePage extends GetView<UserProfileController> {
+  const UserProfilePage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Meu Perfil')),
+      appBar: AppBar(title: const Text('Meu Perfil')),
       body: Obx(() {
         if (controller.loading.isTrue) {
           return const Center(
@@ -115,10 +117,10 @@ class UserProfilePage extends GetView<UserProfileController> {
                         Expanded(
                           child: OutlinedButton(
                             onPressed: controller.logout,
-                            child: const Text('Sair da minha conta'),
                             style: OutlinedButton.styleFrom(
-                              primary: Colors.red,
+                              foregroundColor: Colors.red,
                             ),
+                            child: const Text('Sair da minha conta'),
                           ),
                         ),
                       ],

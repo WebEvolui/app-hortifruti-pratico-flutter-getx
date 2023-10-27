@@ -9,7 +9,7 @@ class QuantityAndWeightWidget extends StatelessWidget {
 
   bool isKg;
 
-  QuantityAndWeightWidget({this.isKg = false});
+  QuantityAndWeightWidget({super.key, this.isKg = false});
 
   @override
   Widget build(BuildContext context) {

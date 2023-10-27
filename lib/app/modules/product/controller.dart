@@ -48,7 +48,7 @@ class ProductController extends GetxController {
 
     ScaffoldMessenger.of(Get.overlayContext!).showSnackBar(
       SnackBar(
-        content: Text('O item ' + product.value!.name + ' foi adicionado no carrinho.'),
+        content: Text('O item ${product.value!.name} foi adicionado no carrinho.'),
       )
     );
 

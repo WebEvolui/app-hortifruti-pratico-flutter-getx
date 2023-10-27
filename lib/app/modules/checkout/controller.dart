@@ -86,7 +86,7 @@ class CheckoutController extends GetxController {
   void showAddressList() {
     Get.dialog(
       SimpleDialog(
-        title: Text('Selecione um endereço'),
+        title: const Text('Selecione um endereço'),
         children: [
           for (var address in addresses)
             SimpleDialogOption(
@@ -111,7 +111,7 @@ class CheckoutController extends GetxController {
   void sendOrder() {
     if (paymentMethod.value == null) {
       ScaffoldMessenger.of(Get.overlayContext!).showSnackBar(
-        SnackBar(content: Text('Escolha a forma de pagamento do seu pedido.'))
+        const SnackBar(content: Text('Escolha a forma de pagamento do seu pedido.'))
       );
 
       return;
@@ -128,14 +128,14 @@ class CheckoutController extends GetxController {
     _repository.postOrder(orderRequest).then((value) {
       Get.dialog(
         AlertDialog(
-          title: Text('Pedido enviado!'),
+          title: const Text('Pedido enviado!'),
           actions: [
             TextButton(
               onPressed: () {
                 _cartService.finalizeCart();
                 Get.offAllNamed(Routes.dashboard, arguments: 2);
               },
-              child: Text('Ver Meus Pedidos')
+              child: const Text('Ver Meus Pedidos')
             )
           ],
         ),

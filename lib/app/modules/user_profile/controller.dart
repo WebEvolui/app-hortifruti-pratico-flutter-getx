@@ -1,5 +1,3 @@
-import 'package:app_hortifruti_pratico/app/data/models/city.dart';
-import 'package:app_hortifruti_pratico/app/data/models/user.dart';
 import 'package:app_hortifruti_pratico/app/data/models/user_profile_request.dart';
 // import 'package:app_hortifruti_pratico/app/data/models/user_profile_request.dart';
 import 'package:app_hortifruti_pratico/app/data/services/auth/service.dart';

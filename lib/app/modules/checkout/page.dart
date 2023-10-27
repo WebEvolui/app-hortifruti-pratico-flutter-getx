@@ -4,11 +4,13 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class CheckoutPage extends GetView<CheckoutController> {
+  const CheckoutPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Checkout')),
+      appBar: AppBar(title: const Text('Checkout')),
       body: Obx(() {
         if (controller.loading.isTrue) {
           return const Center(
@@ -39,7 +41,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                               Expanded(child: _buildAddress()),
                               TextButton(
                                 onPressed: controller.showAddressList,
-                                child: Text('Alterar')
+                                child: const Text('Alterar')
                               )
                           ],
                         ),
@@ -47,7 +49,7 @@ class CheckoutPage extends GetView<CheckoutController> {
                           Text(
                             'O endereço selecionado não é atendido',
                             textAlign: TextAlign.center,
-                            style: Get.textTheme.bodyText1!.copyWith(color: Colors.red),
+                            style: Get.textTheme.bodyLarge!.copyWith(color: Colors.red),
                           )
                       ]
                       else Center(
@@ -63,7 +65,7 @@ class CheckoutPage extends GetView<CheckoutController> {
               else Center(
                 child: OutlinedButton(
                   onPressed: controller.goToLogin,
-                  child: Text('Entre com a sua conta para continuar')
+                  child: const Text('Entre com a sua conta para continuar')
                 ),
               ),
               Padding(

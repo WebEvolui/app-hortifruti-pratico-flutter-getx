@@ -5,7 +5,7 @@ class StoreStatus extends StatelessWidget {
   
   bool isOnline;
 
-  StoreStatus({required this.isOnline});
+  StoreStatus({super.key, required this.isOnline});
 
   @override
   Widget build(BuildContext context) {

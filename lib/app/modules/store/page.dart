@@ -7,6 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class StorePage extends GetView<StoreController> {
+  const StorePage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +16,9 @@ class StorePage extends GetView<StoreController> {
       floatingActionButton: Obx(() {
         if (controller.showCartButton) {
           return FloatingActionButton(
-            child: Icon(Icons.shopping_cart),
             onPressed: () => Get.toNamed(Routes.cart),
             tooltip: 'Ver carrinho',
+            child: const Icon(Icons.shopping_cart),
           );
         }
 
@@ -54,7 +56,7 @@ class StorePage extends GetView<StoreController> {
                         children: [
                           Text(
                             state.name,
-                            style: Get.textTheme.headline5,
+                            style: Get.textTheme.headlineSmall,
                           ),
                           const SizedBox(height: 8.0,),
                           StoreStatus(isOnline: state.isOnline)

@@ -5,7 +5,6 @@ import 'package:app_hortifruti_pratico/app/modules/checkout/binding.dart';
 import 'package:app_hortifruti_pratico/app/modules/checkout/page.dart';
 import 'package:app_hortifruti_pratico/app/modules/dashboard/binding.dart';
 import 'package:app_hortifruti_pratico/app/modules/dashboard/page.dart';
-import 'package:app_hortifruti_pratico/app/modules/home/page.dart';
 import 'package:app_hortifruti_pratico/app/modules/login/binding.dart';
 import 'package:app_hortifruti_pratico/app/modules/login/page.dart';
 import 'package:app_hortifruti_pratico/app/modules/order/binding.dart';
@@ -31,58 +30,58 @@ abstract class AppPages {
   static final pages = [
     GetPage(
       name: Routes.dashboard,
-      page: () => DashboardPage(),
+      page: () => const DashboardPage(),
       binding: DashboardBinding(),
       middlewares: [RedirectMiddleware()]
     ),
     GetPage(
       name: Routes.store,
-      page: () => StorePage(),
+      page: () => const StorePage(),
       binding: StoreBinding(),
     ),
     GetPage(
       name: Routes.product,
-      page: () => ProductPage(),
+      page: () => const ProductPage(),
       binding: ProductBinding(),
     ),
     GetPage(
       name: Routes.cart,
-      page: () => CartPage(),
+      page: () => const CartPage(),
       binding: CartBinding(),
     ),
     GetPage(
       name: Routes.checkout,
-      page: () => CheckoutPage(),
+      page: () => const CheckoutPage(),
       binding: CheckoutBinding(),
     ),
     GetPage(
       name: Routes.login,
-      page: () => LoginPage(),
+      page: () => const LoginPage(),
       binding: LoginBinding(),
     ),
     GetPage(
       name: Routes.register,
-      page: () => RegisterPage(),
+      page: () => const RegisterPage(),
       binding: RegisterBinding(),
     ),
     GetPage(
       name: Routes.userAddress,
-      page: () => UserAddressPage(),
+      page: () => const UserAddressPage(),
       binding: UserAddressBinding(),
     ),
     GetPage(
       name: Routes.userAddressList,
-      page: () => UserAddressListPage(),
+      page: () => const UserAddressListPage(),
       binding: UserAddressListBinding(),
     ),
     GetPage(
       name: Routes.order,
-      page: () => OrderPage(),
+      page: () => const OrderPage(),
       binding: OrderBinding(),
     ),
     GetPage(
       name: Routes.selectCity,
-      page: () => SelectCityPage(),
+      page: () => const SelectCityPage(),
       binding: SelectCityBinding(),
       fullscreenDialog: true
     ),

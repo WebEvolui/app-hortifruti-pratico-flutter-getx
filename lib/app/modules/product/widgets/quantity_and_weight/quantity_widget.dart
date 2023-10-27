@@ -6,6 +6,8 @@ import 'package:intl/intl.dart';
 class QuantityWidget extends StatelessWidget {
   var controller = Get.find<QuantityAndWeightController>();
 
+  QuantityWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     var quantity = controller.quantity;
@@ -16,11 +18,11 @@ class QuantityWidget extends StatelessWidget {
       children: [
         ElevatedButton(
           onPressed: quantity > 1 ? () => controller.changeQuantity(quantity - 1) : null,
-          child: const Icon(Icons.remove),
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(0),
             minimumSize: const Size(40, 40),
           ),
+          child: const Icon(Icons.remove),
         ),
         Container(
           width: isKg ? 96.0 : 48.0,
@@ -36,11 +38,11 @@ class QuantityWidget extends StatelessWidget {
         ),
         ElevatedButton(
           onPressed: () => controller.changeQuantity(quantity + 1),
-          child: const Icon(Icons.add),
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.all(0),
             minimumSize: const Size(40, 40),
           ),
+          child: const Icon(Icons.add),
         ),
       ],
     );

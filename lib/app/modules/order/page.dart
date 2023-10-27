@@ -1,11 +1,12 @@
 import 'package:app_hortifruti_pratico/app/data/models/order_product.dart';
 import 'package:app_hortifruti_pratico/app/modules/order/controller.dart';
-import 'package:app_hortifruti_pratico/app/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class OrderPage extends GetView<OrderController> {
+  const OrderPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {

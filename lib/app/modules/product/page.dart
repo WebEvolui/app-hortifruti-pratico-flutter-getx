@@ -6,6 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ProductPage extends GetView<ProductController> {
+  const ProductPage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,7 @@ class ProductPage extends GetView<ProductController> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  SizedBox(height: 4.0,),
+                  const SizedBox(height: 4.0,),
                   QuantityAndWeightWidget(isKg: product.isKg,),
                 ],
               ),

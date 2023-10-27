@@ -5,12 +5,14 @@ import 'package:get/get.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class HomePage extends GetView<HomeController> {
+  const HomePage({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hortifruti Prático'),
+        title: const Text('Hortifruti Prático'),
         actions: [
           IconButton(
             onPressed: () => Get.toNamed(Routes.selectCity),
@@ -25,7 +27,7 @@ class HomePage extends GetView<HomeController> {
             for (var store in state!)
               ListTile(
                 title: Text(store.name),
-                leading: Container(
+                leading: SizedBox(
                   width: 56.0,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
