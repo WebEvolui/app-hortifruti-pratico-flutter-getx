@@ -6,7 +6,7 @@ class StoreModel {
 
   int id;
   String name;
-  String image;
+  String? image;
   bool isOnline;
   List<CategoryModel> categories;
   List<ShippingByCityModel> shippingByCity;

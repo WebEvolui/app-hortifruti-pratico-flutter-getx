@@ -12,7 +12,7 @@ class ShippingByCityModel {
 
   factory ShippingByCityModel.fromJson(Map<String, dynamic> json) => ShippingByCityModel(
     id: json['id'],
-    name: json['nome'],
+    name: json['cidade'],
     cost: json['custo_entrega'],
   );
 }

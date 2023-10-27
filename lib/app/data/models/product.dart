@@ -5,7 +5,7 @@ class ProductModel {
   num price;
   String unitOfMeasure;
   String? description;
-  String image;
+  String? image;
 
   bool get isKg => unitOfMeasure == 'KG';
 

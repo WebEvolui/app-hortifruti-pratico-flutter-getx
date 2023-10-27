@@ -1,3 +1,4 @@
+import 'package:app_hortifruti_pratico/app/data/models/product.dart';
 import 'package:app_hortifruti_pratico/app/modules/store/controller.dart';
 import 'package:app_hortifruti_pratico/app/routes/routes.dart';
 import 'package:app_hortifruti_pratico/app/widgets/store_status.dart';
@@ -38,18 +39,20 @@ class StorePage extends GetView<StoreController> {
                 ),
                 child: Row(
                   children: [
-                    SizedBox(
-                      width: 96.0,
-                      height: 96.0,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: FadeInImage.memoryNetwork(
-                          placeholder: kTransparentImage,
-                          image: state!.image,
+                    if (state!.image != null) ...[
+                      SizedBox(
+                        width: 96.0,
+                        height: 96.0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: FadeInImage.memoryNetwork(
+                            placeholder: kTransparentImage,
+                            image: state.image!,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(width: 16.0),
+                      const SizedBox(width: 16.0),
+                    ],
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,19 +97,7 @@ class StorePage extends GetView<StoreController> {
                         ListTile(
                           title: Text(product.name),
                           subtitle: Text(NumberFormat.simpleCurrency().format(product.price) + (product.isKg ? '/kg' : '')),
-                          leading: product.image.isNotEmpty
-                              ? SizedBox(
-                                  width: 56.0,
-                                  height: 56.0,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: FadeInImage.memoryNetwork(
-                                      placeholder: kTransparentImage,
-                                      image: product.image,
-                                    ),
-                                  ),
-                                )
-                              : null,
+                          leading: _buildProductImage(product),
                           onTap: () => Get.toNamed(
                             Routes.product,
                             arguments: {
@@ -124,6 +115,22 @@ class StorePage extends GetView<StoreController> {
           ],
         )
       )
+    );
+  }
+
+  Widget? _buildProductImage(ProductModel product) {
+    if (product.image == null) return null;
+    
+    return SizedBox(
+      width: 56.0,
+      height: 56.0,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: FadeInImage.memoryNetwork(
+          placeholder: kTransparentImage,
+          image: product.image!,
+        ),
+      ),
     );
   }
 }
